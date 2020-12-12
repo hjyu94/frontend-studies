@@ -13,11 +13,18 @@
         // 일종의 설계
         class LikeButton extends React.Component {
             constructor(props) {
-                super(props)
+                super(props);
+                // 바뀔 여지가 있는 부분을 상태라고 한다.
+                this.state = {
+                    liked: false,
+                }
             }
             // tag 를 만들어주는 함수
             render() {
-                return e('button', null, 'Like'); // <button>Like</button>
+                return e('button'
+                    , { onClick: () => { this.setState({liked:true}); console.log('clicked')}, type: 'submit' }
+                    , this.state.liked === true? 'Liked' : 'Like'
+                ); // <button>Like</button>
             }
         }
     </script>
