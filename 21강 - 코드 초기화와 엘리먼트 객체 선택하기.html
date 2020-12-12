@@ -1,0 +1,77 @@
+<!-- 
+	### 객체 생성과 사용 시점의 문제
+
+	HTML 위에서 작성한 자바스크립트에서 id 값으로 태그를 불러와 사용하게 되면 오류가 발생한다.
+	아직 HTML 코드를 메모리에 올리지 않았기 때문에 사용할 수 없는 것.
+
+	(1) HTML 코드 아래로 자바 스크립트 코드를 이동한다.
+	(2) window.onload
+		body.onload 이벤트 사용할 수도 있지만 이 경우문서 외의 자원(이미지, css)들이 로드되지 않을 수도 있기 때문에 window.onload 까지 완료 되었을 때 스크립트가 읽히도록 하면 된다 
+
+
+	### 객체 아이디 명명 방법의 문제
+
+	이름을 명명할 때 HTML, CSS는 마크업 표기를 쓰지 않고 '-' 로 단어를 구분한다
+	
+	btnPrint -> btn-print
+
+	그런데 자바 스크립트는 마크업 표기를 사용한다.
+	따라서 btn-print.onclick = printResult; 오류가 발생한다.
+
+	var btnPrint = document.getElementById("btn-print");
+
+	따라서 위처럼 표시한다.
+-->
+
+<html>
+	<script>
+		function printResult() {
+			var btnPrint = document.getElementById("btn-print");
+			var x = prompt("x 값을 입력하세요", 2);
+			var y = prompt("y 값을 입력하세요", 4);
+
+			x = parseInt(x);
+			y = parseInt(y);
+			
+			alert(x+y); // 6
+		}
+
+		function init() {
+			var btnPrint = document.getElementById("btn-print");
+			btnPrint.onclick = printResult;
+		}
+
+		window.onload = init;
+	</script>
+	<body>
+		<input id="btn-print" type="button" value="클릭"/>
+		<br/>
+		<span>스팬입니다.</span>
+	</body>
+</html>
+
+<!-- 
+	그런데 위처럼 작성하면 
+	var btnPrint = document.getElementById("btn-print");
+	코드를 두번이나 작성해야 한다.
+
+	그럼 전역으로 빼도 될까?
+
+	<script>
+		var btnPrint = null;
+		function printResult() {
+			// ...
+		}
+
+		function init() {
+			var btnPrint = document.getElementById("btn-print");
+			// ...
+		}
+	</script>
+
+	ㄴㄴ.. 결코 좋은 방법이 아님.
+	여러 사람이 작성한 스크립트 코드를 사용하게 될 건데
+	다른 사람이 btnPrint 라는 변수를 사용하고 있을지도 모르는 일이기 때문.
+	
+	22강 - 스크립트 코드의 지역화 강의를 참조하자.
+-->

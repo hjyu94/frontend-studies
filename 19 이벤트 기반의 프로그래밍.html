@@ -1,0 +1,32 @@
+<!-- ************************************************
+	### 스크립트 코드 작성 영역
+
+	(1) 스크립트 태그 내부
+
+		<script> ... </script>
+		페이지가 읽혀 질 때 실행
+
+	(2) HTML element 태그 내부
+
+		<input onXXX="   " />
+		이벤트가 발생 할 때 실행
+ ************************************************ -->
+
+<html>
+	<body>
+		<input type="button" value="클릭" onclick="alert('안녕하세요!');"/>
+		<br/>
+		<span onclick="printResult();">스팬입니다.</span>
+	</body>
+	<script>
+		function printResult() {
+			var x = prompt("x 값을 입력하세요", 2);
+			var y = prompt("y 값을 입력하세요", 4);
+
+			x = parseInt(x);
+			y = parseInt(y);
+			
+			alert(x+y); // 6
+		}
+	</script>
+</html>

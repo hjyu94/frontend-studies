@@ -1,0 +1,36 @@
+<!-- 
+	[1] 자바스크립트가 html 페이지 밖으로 분리하는법
+	[2] 이벤트 바인딩을 할 때 onXXX = function() { ... } 이외의 방식?
+	
+	- view 와 controller 를 물리적으로 나누기
+	- 분업화하기 쉽다
+	- 재사용하기 쉽다
+	(=> 분업화하거나 재사용하지 않을 거라면 한 페이지에 있는게 좋을 수도 있다)
+
+	<script src="...js"/>			(X) 단일 태그로 사용 불가능
+	<script src="...js"></script>	(O)
+
+	두 스크립트 모두 window.onload = function() { ... } 코드가 있으면
+	window.onload 함수가 두번째 js 가 본인의 코드로 덮어씌워 버린다.
+	두 js 파일을 작성한 사람들이 본인의 코드에서 onload 이벤트 바인딩 함수가 필요하면 어떻게 해야 할까?
+
+
+	### 여러 스크립트 파일을 함께 사용할 때 초기화 함수의 문제
+
+	이벤트 바인딩 함수가 누적 되도록 하자
+
+	window.onload = function() { ... };
+	>>> window.addEventListener("load", function() { ... });
+ -->
+
+<html>
+<head>
+	<script src="23강-1.js"></script>
+	<script src="23강-2.js"></script>
+</head>
+<body>
+	<input id="btn-print" type="button" value="클릭"/>
+	<br/>
+	<span>스팬입니다.</span>
+</body>
+</html>

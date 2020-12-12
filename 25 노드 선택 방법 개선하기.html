@@ -1,0 +1,35 @@
+<!-- 
+	### 하위 엘리먼트 선택하기
+
+	[1] 각 element 마다 id 값 부여해서 찾기
+	[2] 전체 울타리의 id 를 부여하고 그 안에서 i-th element 찾기
+
+	.getElementsByTagName(); => 배열로 return 됨
+	.getElementsByClassName(); => 배열로 return 됨
+
+	EX)
+		var lis = sec1.getElementsByTagName("li");
+		lis[0].textContent = "Hello"; // == innerText
+
+	- id 를 쓰자니 id 는 html 전체에서 유니크해야 하고 절대로 중복되서는 안되고
+	- 그렇다고 index로 lis[i] 로 찾아 쓰자니 html 의 구조에 굉장히 영향을 많이 받으니가 좋지 않다.
+	=> 이럴 때 클래스를 사용할 수도 있다.
+-->
+
+<html>
+<head>
+	<script src="25 노드 선택 방법 개선하기.js"></script>
+</head>
+<body>
+	<section id="section2">
+		<h1>Ex2: 엘리먼트 선택방법 개선하기</h1>
+		<div>
+			<input class="" type="text" value="0" dir="rtl"/>
+			+
+			<input class="" type="text" value="0" dir="rtl"/>
+			<input class="" type="button" value="=">
+			<input class="" type="text" value="0" readonly dir="rtl"/>
+		</div>
+	</section>
+</body>
+</html>
