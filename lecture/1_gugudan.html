@@ -20,6 +20,7 @@
                         second: Math.ceil(Math.random() * 9),
                         value: '',
                         result: '',
+                        prevResult: '',
                     }
                 }
 
@@ -29,15 +30,17 @@
                         this.setState({
                             first: Math.ceil(Math.random() * 9),
                             second: Math.ceil(Math.random() * 9),
+                            prevResult: this.state.value,
                             value: '',
-                            result: '정답'
+                            result: '정답!'
                         });
                     } else {
                         this.setState({
                             first: Math.ceil(Math.random() * 9),
                             second: Math.ceil(Math.random() * 9),
+                            prevResult: this.state.value,
                             value: '',
-                            result: '오답'
+                            result: '오답!'
                         });
                     }
                 }
@@ -54,7 +57,7 @@
                                 <input type="number" value={this.state.value} onChange={this.onChange}/>
                                 <button>입력!</button>
                             </form>
-                            <div>{this.state.result}</div>
+                            <div>{this.state.prevResult} {this.state.result}</div>
                         </div>
                     );
                 }
