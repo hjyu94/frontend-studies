@@ -8,16 +8,24 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      subject: {title: 'WEB', sub:'World wide web!'}
+      subject: {title: 'WEB', sub:'World wide web!'},
+      contents:[
+        {id:1, title:'HTML', desc:'HTML is HypterText ...'},
+        {id:2, title:'CSS', desc:'CSS is for design ...'},
+        {id:3, title:'JavaScript', desc:'Javascript is for interactive ...'},
+      ]
     }
   }
 
   render() {
     return (
       <div className="App">
-        <Subject title={this.state.subject.title} sub={this.state.subject.sub}></Subject>
+        <Subject 
+          title={this.state.subject.title} 
+          sub={this.state.subject.sub}>
+        </Subject>
         <Subject title="React" sub="For UI"></Subject>
-        <TOC></TOC>
+        <TOC data={this.state.contents}></TOC>
         <Content title="HTML" desc="HTML is HyperText Markup Language."></Content>
       </div>
     );
