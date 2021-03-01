@@ -60,17 +60,38 @@ class App extends Component {
         // 위 방법말고
         // 원본 데이터를 바꾸지 않으면서 content 를 갱신시켜 줘야
         // 리액트의 퍼포먼스 리팩토링이 편리해진다.
-        var _contents = this.state.contents.concat(
+        var _contents = Array.from(this.state.contents);
+        _contents.push(
           {id:this.max_content_id, title:_title, desc:_desc}
         );
         this.setState({
-          contents: _contents
+          contents: _contents,
+          mode: 'read',
+          selected_content_id: this.max_content_id
         });
       }.bind(this)}></CreateContent>
     
     } else if(this.state.mode === 'update') {
       var _content = this.getReadContent();
-      _article = <UpdateContent data={_content}></UpdateContent>
+      _article = <UpdateContent data={_content} onSubmit={function(_id, _title, _desc){
+        var _contents = Array.from(this.state.contents); // 원본을 바꾸지 않는 테크닉, 이후 튜닝에 편리하다
+        var i = 0;
+        while(i < _contents.length) {
+          if(_contents[i].id === _id) {
+            _contents[i] = {
+              id: _id,
+              title: _title,
+              desc: _desc
+            }
+            break;
+          }
+          i = i + 1;
+        }
+        this.setState({
+          contents: _contents,
+          mode: 'read'
+        });
+      }.bind(this)}></UpdateContent>
     }
 
     return _article;
