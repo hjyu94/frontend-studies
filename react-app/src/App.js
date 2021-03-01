@@ -6,13 +6,14 @@ import UpdateContent from './components/UpdateContent'
 import Subject from './components/Subject'
 import Control from './components/Control'
 import './App.css';
+import { waitFor } from '@testing-library/react';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.max_content_id = 3; // rendering 과 연관이 없으므로 state 로 두지 않는다
     this.state = {
-      mode:'read',
+      mode:'welcome',
       selected_content_id:1,
       subject: {title: 'WEB', sub:'World wide web!'},
       welcome:{title:'welcome', desc:'Hello, React!!!'},
@@ -113,9 +114,28 @@ class App extends Component {
         ></Subject>
         <Control
           onChangeMode={function(_mode){
-            this.setState({
-              mode: _mode
-            });
+            if(_mode === 'delete') {
+              if(window.confirm('really?')){
+                var _contents = Array.from(this.state.contents);
+                var i = 0;
+                while(i < _contents.length) {
+                  if(_contents[i].id === this.state.selected_content_id) {
+                    _contents.splice(i, 1);
+                    break;
+                  }
+                  i = i + 1;
+                }
+                this.setState({
+                  mode: 'welcome',
+                  contents: _contents
+                });
+                alert('deleted!');
+              }
+            } else {
+              this.setState({
+                mode: _mode
+              });
+            }
           }.bind(this)}
         ></Control>
         <TOC 
