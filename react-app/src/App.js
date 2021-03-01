@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TOC from './components/TOC'
 import ReadContent from './components/ReadContent'
 import CreateContent from './components/CreateContent'
+import UpdateContent from './components/UpdateContent'
 import Subject from './components/Subject'
 import Control from './components/Control'
 import './App.css';
@@ -23,28 +24,29 @@ class App extends Component {
     }
   }
 
-  render() {
-    console.log('App render');
-    
+  getReadContent() {
+    var i = 0;
+    while(i < this.state.contents.length) {
+      var data = this.state.contents[i];
+      if (data.id === Number(this.state.selected_content_id)) {
+        return data;
+      }
+      i = i + 1;
+    }
+  }
+  
+  getContent() {
     var _title, _desc, _article = null;
-    
+
     if(this.state.mode === 'welcome') {
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
       _article = <ReadContent title={_title} desc={_desc}></ReadContent>
 
     } else if(this.state.mode === 'read') {
-      var i = 0;
-      while(i < this.state.contents.length) {
-        var data = this.state.contents[i];
-        if (data.id === Number(this.state.selected_content_id)) {
-          _title = this.state.contents[i].title;
-          _desc = this.state.contents[i].desc;
-          break;
-        }
-        i = i + 1;
-      }
-      _article = <ReadContent title={_title} desc={_desc}></ReadContent>
+      var _content = this.getReadContent();
+      _article = <ReadContent title={_content.title} desc={_content.desc}></ReadContent>
+    
     } else if(this.state.mode === 'create') {
       _article = <CreateContent onSubmit={function(_title, _desc){
         // add content to this.state.contents
@@ -65,8 +67,18 @@ class App extends Component {
           contents: _contents
         });
       }.bind(this)}></CreateContent>
+    
+    } else if(this.state.mode === 'update') {
+      var _content = this.getReadContent();
+      _article = <UpdateContent data={_content}></UpdateContent>
     }
 
+    return _article;
+  }
+
+  render() {
+    console.log('App render');
+    
     return (
       <div className="App">
         <Subject 
@@ -94,7 +106,7 @@ class App extends Component {
             })
           }.bind(this)}
         ></TOC>
-        { _article }
+        { this.getContent() }
       </div>
     );
   }
