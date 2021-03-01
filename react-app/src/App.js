@@ -9,6 +9,7 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.max_content_id = 3; // rendering 과 연관이 없으므로 state 로 두지 않는다
     this.state = {
       mode:'read',
       selected_content_id:1,
@@ -47,7 +48,22 @@ class App extends Component {
     } else if(this.state.mode === 'create') {
       _article = <CreateContent onSubmit={function(_title, _desc){
         // add content to this.state.contents
-        debugger;
+        this.max_content_id = this.max_content_id + 1;
+        // this.state.contents.push (
+        //   {id:this.max_content_id, title:_title, desc:_desc}
+        // );
+        // this.setState({
+        //   contets: this.state.contents
+        // });
+        // 위 방법말고
+        // 원본 데이터를 바꾸지 않으면서 content 를 갱신시켜 줘야
+        // 리액트의 퍼포먼스 리팩토링이 편리해진다.
+        var _contents = this.state.contents.concat(
+          {id:this.max_content_id, title:_title, desc:_desc}
+        );
+        this.setState({
+          contents: _contents
+        });
       }.bind(this)}></CreateContent>
     }
 
