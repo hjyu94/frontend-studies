@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       // The widget subtree can be quite complex.
       home: Scaffold(
           appBar: AppBar(
-            title: Text("Hello My first app"),
+            title: Text("Startup Name Generator"),
           ),
           body: Center(
             child: RandomWords(),
@@ -49,9 +49,39 @@ class RandomWords extends StatefulWidget {
  * and is a recommended best practice for State objects.
  */
 class _RandomWordsState extends State<RandomWords> {
+  final List<WordPair> _suggestions = [];
+
   @override
   Widget build(BuildContext context) {
-    final wordPair = WordPair.random();
-    return Text(wordPair.asPascalCase);
+    /**
+     * The ListView class provides a builder property, itemBuilder,
+     * that’s a factory builder and callback function specified as an anonymous function.
+     */
+    return ListView.builder(itemBuilder: (BuildContext context, int index) {
+      if (index >= _suggestions.length) _suggestions.addAll(generateWordPairs().take(10));
+      return _buildRow(_suggestions[index]);
+    });
+  }
+
+  Widget _buildRow(WordPair wordPair) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            wordPair.asCamelCase,
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        ),
+        Divider(
+          thickness: 1,
+          color: Colors.grey[300],
+          height: 5,
+          indent: 16,
+          endIndent: 16,
+        )
+      ],
+      crossAxisAlignment: CrossAxisAlignment.start,
+    );
   }
 }
