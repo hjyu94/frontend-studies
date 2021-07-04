@@ -65,13 +65,13 @@ class _RandomWordsState extends State<RandomWords> {
 
   Widget _buildRow(WordPair wordPair) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            wordPair.asCamelCase,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
+        ListTile(
+          // leading: Icon(Icons.favorite, color: Colors.redAccent),
+          title: Text(wordPair.asCamelCase),
+          subtitle: Text(wordPair.asCamelCase),
+          trailing: Icon(Icons.favorite, color: Colors.redAccent),
         ),
         Divider(
           thickness: 1,
@@ -81,7 +81,6 @@ class _RandomWordsState extends State<RandomWords> {
           endIndent: 16,
         )
       ],
-      crossAxisAlignment: CrossAxisAlignment.start,
     );
   }
 }
