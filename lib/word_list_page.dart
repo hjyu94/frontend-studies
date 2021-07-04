@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:my_first_app/favorite_list_page.dart';
 
 class WordListPage extends StatelessWidget {
   const WordListPage({
@@ -16,6 +17,33 @@ class WordListPage extends StatelessWidget {
               icon: Icon(Icons.favorite),
               onPressed: () {
                 print("click action button");
+                /***
+                 * Add a new page (called a route in Flutter) that displays the favorites.
+                 * You'll learn how to navigate between the home route and the new route.
+                 *
+                 * In Flutter, the Navigator manages a stack containing the app's routes.
+                 * Pushing a route onto the Navigator's stack updates the display to that route.
+                 * Popping a route from the Navigator's stack returns the display to the previous route.
+                 *
+                 * Next, you'll add a list icon to the AppBar in the build method for _RandomWordsState.
+                 * When the user clicks the list icon,
+                 * a new route that contains the saved favorites is pushed to the Navigator, displaying the icon.
+                 */
+
+                /**
+                 * Some widget properties take a single widget (child),
+                 * and other properties, such as action, take an array of widgets (children),
+                 * as indicated by the square brackets ([]).
+                 */
+                Navigator.of(context)
+                    /**
+                     * Next, you'll build a route and push it to the Navigator's stack.
+                     * That action changes the screen to display the new route.
+                     * The content for the new page is built in MaterialPageRoute's builder property in an anonymous function.
+                     */
+                    .push(MaterialPageRoute(builder: (context) {
+                  return FavoriteListPage();
+                }));
               },
             )
           ],
