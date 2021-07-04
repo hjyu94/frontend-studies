@@ -2,6 +2,8 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:my_first_app/favorite_list_page.dart';
 
+Set<WordPair> _saved = {}; // Set
+
 class WordListPage extends StatelessWidget {
   const WordListPage({
     Key? key,
@@ -42,7 +44,7 @@ class WordListPage extends StatelessWidget {
                      * The content for the new page is built in MaterialPageRoute's builder property in an anonymous function.
                      */
                     .push(MaterialPageRoute(builder: (context) {
-                  return FavoriteListPage();
+                  return FavoriteListPage(_saved.toList());
                 }));
               },
             )
@@ -69,11 +71,10 @@ class RandomWords extends StatefulWidget {
   _RandomWordsState createState() => _RandomWordsState();
 }
 
-/// Prefixing an identifier with an underscore enforces privacy in the Dart language
+/// Prefixing an identifier with an underscore enforces privacy in the Dart language (다른 파일에서 접근 불가)
 /// and is a recommended best practice for State objects.
 class _RandomWordsState extends State<RandomWords> {
   final List<WordPair> _suggestions = []; // List
-  Set<WordPair> _saved = {}; // Set
 
   @override
   Widget build(BuildContext context) {
