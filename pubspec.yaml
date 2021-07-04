@@ -29,6 +29,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  # While viewing the pubspec.yaml file in Android Studio’s editor view, click Pub get.
+  # This pulls the package into your project.
+  # You should see the following in the console:
+  english_words: ^4.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -42,6 +47,10 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
+
+  # This example creates a Material app. Material is a visual design language that is standard on mobile and the web.
+  # Flutter offers a rich set of Material widgets. It’s a good idea to have a uses-material-design: true entry in the flutter section of your pubspec.yaml file.
+  # This will allow you to use more features of Material, such as their set of predefined Icons.
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
