@@ -11,6 +11,14 @@ class WordListPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text("Startup Name Generator"),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.favorite),
+              onPressed: () {
+                print("click action button");
+              },
+            )
+          ],
         ),
         body: Center(
           child: RandomWords(),
