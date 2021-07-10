@@ -110,19 +110,31 @@ class MyPage extends StatelessWidget {
             ],
           ),
         ),
-        body: Builder(
-          builder: (BuildContext context) { // 새로운 컨텍스트 할당
-            return Center(
-              child: FlatButton(
-                child: Text('Show me', style: TextStyle(color: Colors.white)),
-                color: Colors.red,
-                onPressed: () {
-                  Scaffold.of(context).showSnackBar(SnackBar(content: Text('Hello')));
-                },
+        body: MySnackBar(),
+    );
+  }
+}
+
+class MySnackBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: RaisedButton(
+        child: Text('Show me'),
+        onPressed: () {
+          Scaffold.of(context).showSnackBar(SnackBar(
+            content: Text('Hello',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white
               ),
-            );
-          },
-        ));
+            ),
+            backgroundColor: Colors.teal,
+            duration: Duration(milliseconds: 1000),
+          ));
+        }
+      ),
+    );
   }
 }
 
