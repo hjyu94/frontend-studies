@@ -111,7 +111,7 @@ class MyPage extends StatelessWidget {
           ),
         ),
         body: Builder(
-          builder: (BuildContext context) {
+          builder: (BuildContext context) { // 새로운 컨텍스트 할당
             return Center(
               child: FlatButton(
                 child: Text('Show me', style: TextStyle(color: Colors.white)),
