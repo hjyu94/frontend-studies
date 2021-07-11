@@ -20,13 +20,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: Center(
-      //   child: RaisedButton(
-      //     child: Text('Go to ScreenA'),
-      //     onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenA())),
-      //   )
-      // )
-      home: MyPage(),
+      home: Builder(
+        builder: (context) => Center(
+            child: RaisedButton(
+              child: Text('Go to ScreenA'),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenA())),
+            )
+        ),
+      ),
+      // home: MyPage(),
     );
   }
 }
