@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() => runApp(MyApp());
 
@@ -110,7 +111,16 @@ class MyPage extends StatelessWidget {
             ],
           ),
         ),
-        body: MySnackBar(),
+        // body: MySnackBar(),
+        body: Center(
+          child: FlatButton(
+            onPressed: () {
+              flutterToast();
+            },
+            child: Text('Toast'),
+            color: Colors.blue,
+          ),
+        ),
     );
   }
 }
@@ -138,6 +148,16 @@ class MySnackBar extends StatelessWidget {
   }
 }
 
+void flutterToast() {
+  Fluttertoast.showToast(msg: 'Flutter',
+    gravity: ToastGravity.BOTTOM,
+    backgroundColor: Colors.redAccent,
+    fontSize: 20.0,
+    textColor: Colors.white,
+    toastLength: Toast.LENGTH_SHORT,
+  );
+}
+
 /*
   BuildContext
 
@@ -159,3 +179,4 @@ class MySnackBar extends StatelessWidget {
   - Something.of(context)
     현재 주어진 context 에서 위로 올라가면서 가장 가까운 Something 을 찾아서 반환하라
  */
+
