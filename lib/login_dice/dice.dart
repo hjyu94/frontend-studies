@@ -18,9 +18,8 @@ class Dice extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center, // 주축 정렬
               children: [
-                Image(image: AssetImage('image/dice1.png'),
-                  width: 300.0,
-                )
+                Expanded(child: Image.asset('image/dice1.png')), // Expanded has flex field, too
+                Expanded(child: Image.asset('image/dice2.png')),
               ],
             )
           ],
