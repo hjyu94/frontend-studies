@@ -17,11 +17,14 @@ class LogIn extends StatelessWidget {
         centerTitle: true,
         elevation: 0.2,
       ),
-      body: buildButton(),
+      body: _buildButton(),
     );
   }
 
-  Widget buildButton() {
+  /// final, constant -> modifier (제어자)
+  /// dart 에서 변수나 메소드 앞에 _ 가 붙으면 접근 제어자 private 역할을 한다
+  /// 같은 파일 내에서만 접근 가능하다
+  Widget _buildButton() {
     return Padding(
       padding: EdgeInsets.all(16.0),
       child: Column(
