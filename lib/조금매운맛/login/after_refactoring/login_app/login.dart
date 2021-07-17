@@ -17,49 +17,53 @@ class LogIn extends StatelessWidget {
         centerTitle: true,
         elevation: 0.2,
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MyButton(
-              onPressed: () {  },
-              icon: Icon(Icons.account_balance_sharp, color: Colors.black87),
-              text: Text('Login with Google',
-                style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 15.0
-                ),
+      body: buildButton(),
+    );
+  }
+
+  Widget buildButton() {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          MyButton(
+            onPressed: () {  },
+            icon: Icon(Icons.account_balance_sharp, color: Colors.black87),
+            text: Text('Login with Google',
+              style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: 15.0
               ),
-              color: Colors.white,
-              radius: 4.0,
             ),
-            MyButton(
-              onPressed: () {  },
-              icon: Icon(Icons.facebook, color: Colors.white),
-              text: Text('Login with Facebook',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0
-                ),
+            color: Colors.white,
+            radius: 4.0,
+          ),
+          MyButton(
+            onPressed: () {  },
+            icon: Icon(Icons.facebook, color: Colors.white),
+            text: Text('Login with Facebook',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15.0
               ),
-              color: Colors.blueAccent,
-              radius: 4.0,
             ),
-            MyButton(
-              onPressed: () {  },
-              icon: Icon(Icons.email, color: Colors.white),
-              text: Text('Login with Email',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0
-                ),
+            color: Colors.blueAccent,
+            radius: 4.0,
+          ),
+          MyButton(
+            onPressed: () {  },
+            icon: Icon(Icons.email, color: Colors.white),
+            text: Text('Login with Email',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15.0
               ),
-              color: Colors.green,
-              radius: 4.0,
             ),
-          ],
-        ),
+            color: Colors.green,
+            radius: 4.0,
+          ),
+        ],
       ),
     );
   }
