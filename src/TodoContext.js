@@ -1,4 +1,4 @@
-import React, { useReducer, createContext } from 'react';
+import React, { useReducer, createContext, useContext } from 'react';
 
 const initialTodos = [
   {
@@ -61,8 +61,30 @@ export function TodoProvider({ children }) {
     import { TodoStateContext, TodoDispatchContext } from '../TodoContext';
 
     function Sample() {
-    const state = useContext(TodoStateContext);
-    const dispatch = useContext(TodoDispatchContext);
-    return <div>Sample</div>;
+        const state = useContext(TodoStateContext);
+        const dispatch = useContext(TodoDispatchContext);
+        return <div>Sample</div>;
+    }
+*/
+
+export function useTodoState() {
+  return useContext(TodoStateContext);
 }
+
+export function useTodoDispatch() {
+  return useContext(TodoDispatchContext);
+}
+
+/*
+    우리는 컴포넌트에서 useContext 를 직접 사용하는 대신에,
+    useContext 를 사용하는 커스텀 Hook 을 만들어서 내보내주겠습니다.
+
+    import React from 'react';
+    import { useTodoState, useTodoDispatch } from '../TodoContext';
+
+    function Sample() {
+        const state = useTodoState();
+        const dispatch = useTodoDispatch();
+        return <div>Sample</div>;
+    }
 */
