@@ -71,13 +71,20 @@ export function TodoProvider({ children }) {
         return <div>Sample</div>;
     }
 */
-
 export function useTodoState() {
-  return useContext(TodoStateContext);
+  const context = useContext(TodoStateContext);
+  if (!context) {
+    throw new Error('Cannot find TodoProvider');
+  }
+  return context;
 }
 
 export function useTodoDispatch() {
-  return useContext(TodoDispatchContext);
+  const context = useContext(TodoDispatchContext);
+  if (!context) {
+    throw new Error('Cannot find TodoProvider');
+  }
+  return context;
 }
 
 /*
@@ -95,5 +102,18 @@ export function useTodoDispatch() {
 */
 
 export function useTodoNextId() {
-  return useContext(TodoNextIdContext);
+  const context = useContext(TodoNextIdContext);
+  if (!context) {
+    throw new Error('Cannot find TodoProvider');
+  }
+  return context;
 }
+
+/*
+    우리가 만든 useTodoState, useTodoDispatch, useTodoNextId Hook 을 사용하려면,
+    해당 컴포넌트가 TodoProvider 컴포넌트 내부에 렌더링되어 있어야 합니다
+    (예: App 컴포넌트에서 모든 내용을 TodoProvider 로 감싸기).
+
+    만약 TodoProvider 로 감싸져있지 않다면 에러를 발생시키도록
+    커스텀 Hook 을 수정해보겠습니다.
+*/
