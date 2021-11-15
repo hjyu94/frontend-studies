@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, createContext } from 'react';
 
 const initialTodos = [
   {
@@ -38,7 +38,31 @@ function todoReducer(state, action) {
   }
 }
 
+const TodoStateContext = createContext();
+const TodoDispatchContext = createContext();
+
 export function TodoProvider({ children }) {
   const [state, dispatch] = useReducer(todoReducer, initialTodos);
-  return children;
+  return (
+    <TodoStateContext.Provider value={state}>
+      <TodoDispatchContext.Provider value={dispatch}>
+        {children}
+      </TodoDispatchContext.Provider>
+    </TodoStateContext.Provider>
+  );
 }
+
+/*
+    Context 에서 사용 할 값을 지정 할 때에는 위와 같이 Provider 컴포넌트를 렌더링 하고 value 를 설정해주면 됩니다.
+    그리고, props 로 받아온 children 값을 내부에 렌더링해주세요.
+    이렇게 하면 다른 컴포넌트에서 state 나 dispatch를 사용하고 싶을 때 다음과 같이 할 수 있습니다.
+
+    import React, { useContext } from 'react';
+    import { TodoStateContext, TodoDispatchContext } from '../TodoContext';
+
+    function Sample() {
+    const state = useContext(TodoStateContext);
+    const dispatch = useContext(TodoDispatchContext);
+    return <div>Sample</div>;
+}
+*/
